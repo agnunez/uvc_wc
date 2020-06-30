@@ -28,7 +28,7 @@ A commercial PIR is required. There are affordable PIR modules out there, but I 
 
 So one MCU pin is configured as input and connecte to the pcb track before the resistor, and another pin is configure as output and connected to the other pad of the removed resistor. An external resistor (10Mohm in my case) is soldered between the pin and the j-transistor base pcb pad. 
 
-![GitHub Logo](/door_sensor.jpg)
+![GitHub Logo](/PIR_pcb.jpg)
 
 To detect Door Open/Close status, a magnetic switch is being used, they are very common and a reed relay is activated when magnet installed on the door is near it. So one pin of MCU is used to send Vcc current (with a limit resistor) to the door switch, and the return signal (pull down) is normally 0 unless the door is close (High TTL value).
 
