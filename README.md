@@ -19,6 +19,21 @@ T2 time after door is open, to consider the last occupancy is gone
 
 T3 UVC cleaning time, that can be interrupted by the presence of someone, so UVC is inmmediately turned off.
 
+# Hardware
+
+A commercial PIR is required. There are affordable PIR modules out there, but I did not have them availables where I live so I used a commercial PIR to light under motion presence detection, open it, and hack the pcb in a resistor that comes from the algorithm controller IC toward a j-transistor that activate the Relay. In that way, we can procees the PIR signal from the IC into an external MCU, and follow the FSM above to activate it only when nobody is arround, and the WC has been used. 
+
+![GitHub Logo](/PIR.jpg)
+
+
+So one MCU pin is configured as input and connecte to the pcb track before the resistor, and another pin is configure as output and connected to the other pad of the removed resistor. An external resistor (10Mohm in my case) is soldered between the pin and the j-transistor base pcb pad. 
+
+![GitHub Logo](/door_sensor.jpg)
+
+To detect Door Open/Close status, a magnetic switch is being used, they are very common and a reed relay is activated when magnet installed on the door is near it. So one pin of MCU is used to send Vcc current (with a limit resistor) to the door switch, and the return signal (pull down) is normally 0 unless the door is close (High TTL value).
+
+![GitHub Logo](/door_sensor.jpg)
+
 # Versions
 
 First version is the simplest one. FSM as diagram and T1,T2 and T3 predefined. New version is comming that ESP8266 will be accesible through wifi to allow Timers to be tuned and reconfigured, and perhaps, for logging.
