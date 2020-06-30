@@ -66,8 +66,8 @@ void loop() {
               ts2 = millis();            
               break;
             }
-            if (millis() - ts2 > t2){
-               ts2=0;
+            if ((unsigned long)(millis() - ts2) > t2){
+               ts2=millis();
                Serial.println("T2_TIMEOUT");
                ts3 = millis();            
                Serial.println("RESET_T3");
@@ -94,8 +94,8 @@ void loop() {
               Serial.println("Change to state S_BUSY");
               break;
             }
-            if (millis() - ts3 > t3){
-               ts3=0;
+            if ((unsigned long)(millis() - ts3) > t3){
+               ts3=millis();
                Serial.println("T3_TIMEOUT");
                ts3 = millis();            
                Serial.println("RESET_T3");
@@ -117,8 +117,8 @@ void loop() {
             break;
 
         case S_SOMEONE_CLEAN:
-            if (millis() - ts1 > t1){
-               ts1=0;
+            if ((unsigned long)(millis() - ts1) > t1){
+               ts1=millis();
                Serial.println("T1_TIMEOUT");
                state = S_EMPTY_CLEAN;
                Serial.println("Change to state S_EMPTY_CLEAN");
