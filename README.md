@@ -1,8 +1,8 @@
-# Welcome to HeliosCap!
+# Welcome to UVC_WC!
 
 This is a hacking project to adapt a commercial PIR light controller, to change its behaviour at will and use it to sanitize and desinfect a room (i.e. restroom) after its use, only when nobody is there, using a UVC lamp that kill viruses and bacteria and generate ozone gas. WARNING: UVC is a dangerous ultraviolet wavelength that can produce damage into you eyes. Use adequated glases while testing the installation
 
-![GitHub Logo](/UVC_WC.ino)
+![GitHub Logo](/uvc_wc_fsm.JPG)
 
 As UVC light is dangerous to our eyes and skin, the PIR light controller is change to behave as the above Finite-State Machine (FSM), using any MCU (an ESP8266 in my case, but any arduino-like will do
 
