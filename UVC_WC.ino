@@ -1,5 +1,11 @@
+// @agnuca June 2020
+// https://
+// fsm code from https://majenko.co.uk/blog/finite-state-machine
+/*  // only for ESP8266
 #include "ESP8266WiFi.h"
 #include "WiFiClient.h"
+*/  
+// Use 'Dx' for ESP8266 or int pin numbers for arduino
 
 #define RELAY D0         // RELAY = 1 uvc on, RELAY = 0 uvc off
 #define PIR   D1         // PIR = 1 presence, PIR = 0  NONE
@@ -25,8 +31,10 @@ static state_t state = S_EMPTY_DIRTY; // Initial state EMPTY_DIRTY
 
 // the setup function runs once when you press reset or power the board
 void setup() {
+/* Only for ESP8266
   WiFi.mode( WIFI_OFF );
   WiFi.forceSleepBegin();
+*/
   pinMode(RELAY, OUTPUT);
   pinMode(LED, OUTPUT);
   pinMode(DOOR, INPUT);
@@ -112,8 +120,8 @@ void loop() {
             if (millis() - ts1 > t1){
                ts1=0;
                Serial.println("T1_TIMEOUT");
-               state = S_SOMEONE_CLEAN;
-               Serial.println("Change to state S_SOMEONE_CLEAN");
+               state = S_EMPTY_CLEAN;
+               Serial.println("Change to state S_EMPTY_CLEAN");
                break;
             }
             if (digitalRead(DOOR)>0) {
