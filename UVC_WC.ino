@@ -17,8 +17,8 @@
 // global variables
 unsigned long ts1,ts2,ts3;
 unsigned long t1 = 5000;   // Presence delay while empty 5s
-unsigned long t2 = 12000;  // Presence delay while dirty 2m
-unsigned long t3 = 30000;  // Cleaning time 5m
+unsigned long t2 = 120000;  // Presence delay while dirty 2m
+unsigned long t3 = 300000;  // Cleaning time 5m
 
 typedef enum state_t {
     S_EMPTY_CLEAN,    // 0
@@ -107,6 +107,7 @@ void loop() {
                Serial.println("T3_TIMEOUT");
                ts3 = millis();            
                Serial.println("RESET_T3");
+               uvc(LOW);
                state = S_EMPTY_CLEAN;
                Serial.println("Change to state S_EMPTY_CLEAN");
                Serial.println("GREEN LED");
