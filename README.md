@@ -1,10 +1,18 @@
 # Welcome to UVC_WC!
 
-This is a hacking project to adapt a commercial PIR light controller, to change its behaviour at will and use it to sanitize and desinfect a room (i.e. restroom) after its use, only when nobody is there, using a UVC lamp that kill viruses and bacteria and generate ozone gas. WARNING: UVC is a dangerous ultraviolet wavelength that can produce damage into you eyes. Use adequated glases while testing the installation
+[UVC](https://en.wikipedia.org/wiki/Ultraviolet#UVC) is a special range of ultaviolet light with shorter wavelength than better known UVA (used in tanning beds to tan the skin). Normally UVC is absorved by atmospheric ozono, so do not reach us so we are protected during sunny days. [See differences](https://www.sungrubbies.com/blogs/news-articles/uva-uvb-radiation)
 
-![GitHub Logo](/uvc_wc_fsm.JPG)
+UVC bulbs and tubes are commercially available and has been extensivelly used for years to sanitize hospital sensible areas like surgery operating rooms,  and infectious patient area toilets. It is very efficient and, by ionizing air, produces also ozone gas, that helps also in the bacteria and virus cleaning process.
 
-As UVC light is dangerous to our eyes and skin, the PIR light controller is change to behave as the above Finite-State Machine (FSM), using any MCU (an ESP8266 in my case, but any arduino-like will do
+This is a hacking project to adapt a commercial PIR light controller, to change its behaviour at will and use it to sanitize and desinfect a room (i.e. restroom) after its use, only when nobody is there, using a UVC lamp that kill viruses and bacteria and generate ozone gas. Hacking was necessary due to lack of supply during lockdown but it can also be developed with standard arduino shields and modules. 
+
+##### WARNING: UVC is a dangerous ultraviolet wavelength that can produce damage into you eyes. Use adequated glases while testing the installation. Ozone produced by UVC inonization of air should not be breath continuosly in a closed room, so, work in a ventilated environment.
+
+
+![GitHub Logo](/images/uvc_wc_fsm.jpg)
+
+
+As UVC light is dangerous to our eyes and skin, we need to prevent the PIR light controller is change to behave as the above Finite-State Machine (FSM), using any MCU (an ESP8266 in my case, but any arduino-like will do
 
 # Behaviour
 
@@ -23,20 +31,20 @@ T3 UVC cleaning time, that can be interrupted by the presence of someone, so UVC
 
 A commercial PIR is required. There are affordable PIR modules out there, but I did not have them availables where I live so I used a commercial PIR to light under motion presence detection, open it, and hack the pcb in a resistor that comes from the algorithm controller IC toward a j-transistor that activate the Relay. In that way, we can procees the PIR signal from the IC into an external MCU, and follow the FSM above to activate it only when nobody is arround, and the WC has been used. 
 
-![GitHub Logo](/PIR.jpg)
+![GitHub Logo](/images/PIR.jpg)
 
 
 So one MCU pin is configured as input and connecte to the pcb track before the resistor (green wire), and another pin is configure as output and connected to the other pad of the removed resistor (yellow wire). An external resistor (10Mohm in my case) is soldered between the pin and the j-transistor base pcb pad. 
 
 BEFORE
-![GitHub Logo](/PIR_pcb.jpg)
+![GitHub Logo](/images/PIR_pcb.jpg)
 
 HACKED
-![GitHub Logo](/PIRrelayhack.jpg)
+![GitHub Logo](/images/PIRrelayhack.jpg)
 
 To detect Door Open/Close status, a magnetic switch is being used, they are very common and a reed relay is activated when magnet installed on the door is near it. So one pin of MCU is used to send Vcc current (with a limit resistor) to the door switch, and the return signal (pull down) is normally 0 unless the door is close (High TTL value).
 
-![GitHub Logo](/door_sensor.jpg)
+![GitHub Logo](/images/door_sensor.jpg)
 
 # Versions
 
@@ -48,9 +56,8 @@ Future upgrades will include an Ozone sensor, to avoid saturation of that gas, a
 
 # Conclusion
 
-With current covid19 pandemia, is very difficult to mantain WC's clean after each use in public lavatorios like companies, sport installations, etc, so I think this project is quite useful.
+With current covid-19 pandemia, is very difficult to mantain WC's clean after each use in public lavatorios like companies, sport installations, etc, so I think this project is quite useful.
 
 Hope you like it and enhance!
 
 @agnuca June 2020
-
